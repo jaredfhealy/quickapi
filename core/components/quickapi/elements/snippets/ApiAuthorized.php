@@ -3,7 +3,7 @@
 $auth = false;
 
 // Check for a token matching the system property
-if ($authToken === $modx->getOption('quickapi_x-api-key')) {
+if ($authToken === $modx->getOption('quickapi.x_api_key', ['quickapi'], "")) {
     // Add any additional logic as needed for your authorization
     
     // Set the final auth result

@@ -2,8 +2,8 @@
 
 return [
     'web' => [
-        'quickapi' => [
-            'pagetitle' => 'QuickApi',
+        'quickapi-process' => [
+            'pagetitle' => 'QuickApi Processor',
             'template' => 0,
             'hidemenu' => true,
             'published' => true,

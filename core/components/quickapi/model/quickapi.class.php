@@ -7,10 +7,10 @@ class QuickApi
 	
 	/* Public Vars */
 	public $service = "Unknown";
-	public $method;
-	public $pathArr;
-	public $paramsArr;
-	public $bodyArr;
+	public $method = "";
+	public $pathArr = [];
+	public $paramsArr = [];
+	public $bodyArr = [];
     
     /**
 	 * @var array Placeholder response array

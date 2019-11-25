@@ -1,8 +1,8 @@
 <?php
 return [
-    'x-api-key' => [
-        'xtype' => 'string',
+    'x_api_key' => [
+        'xtype' => 'textfield',
         'value' => 'someuniquetokenvaluethatnoonecanguess',
         'area' => 'quickapi',
-    ],
+    ]
 ];
