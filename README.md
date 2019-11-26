@@ -13,7 +13,9 @@ Below are the details to get up and running. The included snippet ApiHelloWorld 
 ## Install the QuikApi Extra
 Install through the Extras installer in your MODX instance. See documentation here: https://docs.modx.com/revolution/2.x/administering-your-site/installing-a-package  
 
-## Update your rewrite rules. If you would like to use something other than "/api/" as your path root, update it in the rewirite rules.
+## Create Rewrite Rules (NGINX/Apache)
+If you would like to use something other than "/api/" as your path root, change it in the initial rewrite match from /api/ to /mything/.
+
 1. NGINX
    * rewrite ^/api/(.*)$ /quickapi-process?_quickapi=$1&$args;
 2. Apache .htaccess
