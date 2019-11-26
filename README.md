@@ -24,15 +24,22 @@ If you would like to use something other than "/api/" as your path root, change 
 ## Review the ApiAuthorized Snippet
 This snippet handles the initial authorization of all QuickApi calls. You could check the service and method here and respond accordingly. This snippet has access to the same properties/variables as all the snippets called by QuickApi. See below for the full list.
 
+Authorization defaults to false and then is allowed by setting $auth to true. See the ApiAuthorized snippet to see starting authorization using a header token, or by checking the logged in user. If you have public APIs you need to allow them here by checking the service;
+
 1. Example specific authorization
    ```php
    <?php
    // Get the service translated from /api/my_endpoint
    if ($api->service === 'MyEndpoint' && $method === 'POST') {
      // If they are not an App Admin
-     if (!$modx->user->isMember('AppAdmins')) {
-       $auth = false;
+     if ($modx->user->isMember('AppAdmins')) {
+       $auth = true;
      }
+   }
+   
+   // Get the service translated from /api/public_thing
+   if ($api->service === 'PublicThing') {
+     $auth = true;
    }
    
    ```
