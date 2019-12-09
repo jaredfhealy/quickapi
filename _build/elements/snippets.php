@@ -7,10 +7,10 @@ return [
     ],
     'ApiHelloWorld' => [
         'file' => 'ApiHelloWorld',
-        'description' => 'Args: $api (Api class), $method (HTTP), $body (Array), $path (Array), $params (Array query parms)'
+        'description' => 'Args: $quickapi (QuickApi class instance), $method (HTTP), $body (Array), $path (Array), $params (Array query parms)'
     ],
     'ApiAuthorized' => [
         'file' => 'ApiAuthorized',
-        'description' => 'Authorize any API calls: $api (QuickApi class), $authToken (X-API-Key if present), $hostname, $method (HTTP), $body (Array), $path (Array), $params (Array query parms)\nThis Snippet is called for every API call.'
+        'description' => 'Authorize any API calls: $quickapi (QuickApi class instance), $authToken (X-API-Key if present), $hostname, $method (HTTP), $body (Array), $path (Array), $params (Array query parms)\nThis Snippet is called for every API call.'
     ]
 ];

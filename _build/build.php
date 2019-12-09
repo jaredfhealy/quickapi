@@ -78,35 +78,6 @@ class QuickApiPackage
 
 
     /**
-     * Update the model
-     */
-    protected function model()
-    {
-        $model_file = $this->config['core'] . 'model/schema/' . $this->config['name_lower'] . '.mysql.schema.xml';
-        if (!file_exists($model_file) || empty(file_get_contents($model_file))) {
-            return;
-        }
-        /** @var xPDOCacheManager $cache */
-        if ($cache = $this->modx->getCacheManager()) {
-            $cache->deleteTree(
-                $this->config['core'] . 'model/' . $this->config['name_lower'] . '/mysql',
-                ['deleteTop' => true, 'skipDirs' => false, 'extensions' => []]
-            );
-        }
-
-        /** @var xPDOManager $manager */
-        $manager = $this->modx->getManager();
-        /** @var xPDOGenerator $generator */
-        $generator = $manager->getGenerator();
-        $generator->parseSchema(
-            $this->config['core'] . 'model/schema/' . $this->config['name_lower'] . '.mysql.schema.xml',
-            $this->config['core'] . 'model/'
-        );
-        $this->modx->log(modX::LOG_LEVEL_INFO, 'Model updated');
-    }
-
-
-    /**
      * Add settings
      */
     protected function settings()
@@ -382,9 +353,6 @@ class QuickApiPackage
      */
     public function process()
     {
-        $this->model();
-        //$this->assets();
-
         // Add elements
         $elements = scandir($this->config['elements']);
         foreach ($elements as $element) {
@@ -406,10 +374,6 @@ class QuickApiPackage
             'source' => $this->config['core'],
             'target' => "return MODX_CORE_PATH . 'components/';",
         ]);
-        $vehicle->resolve('file', [
-            'source' => $this->config['assets'],
-            'target' => "return MODX_ASSETS_PATH . 'components/';",
-        ]);
 
         // Add resolvers into vehicle
         $resolvers = scandir($this->config['resolvers']);
@@ -419,6 +383,9 @@ class QuickApiPackage
             }
             if ($vehicle->resolve('php', ['source' => $this->config['resolvers'] . $resolver])) {
                 $this->modx->log(modX::LOG_LEVEL_INFO, 'Added resolver ' . preg_replace('#\.php$#', '', $resolver));
+            }
+            else {
+                $this->modx->log(modX::LOG_LEVEL_ERROR, 'Unable to add resolver');
             }
         }
         $this->builder->putVehicle($vehicle);

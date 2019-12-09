@@ -14,35 +14,30 @@ Below are the details to get up and running. The included snippet ApiHelloWorld 
 Install through the Extras installer in your MODX instance. See documentation here: https://docs.modx.com/revolution/2.x/administering-your-site/installing-a-package  
 
 ## Create Rewrite Rules (NGINX/Apache)
-If you would like to use something other than "/api/" as your path root, change it in the initial rewrite match from /api/ to /mything/.
+If you would like to use something other than "/api/" as your path root, change it in the initial rewrite match from /api/ to /myapi/.
 
 1. NGINX
-   * rewrite ^/api/(.*)$ /quickapi-process?_quickapi=$1&$args;
+   * `rewrite ^/api/(.*)$ /quickapi-process?_quickapi=$1&$args;`
 2. Apache .htaccess
-   * RewriteRule ^/api/(.*)$ /quickapi-process?_quickapi=$1
+   * `RewriteRule ^/api/(.*)$ /quickapi-process?_quickapi=$1`
    
-## Review the ApiAuthorized Snippet
-This snippet handles the initial authorization of all QuickApi calls. You could check the service and method here and respond accordingly. This snippet has access to the same properties/variables as all the snippets called by QuickApi. See below for the full list.
+## Review the Default ApiAuthorized Snippet
+This snippet handles the default authorization of all QuickApi calls. Authorization defaults to false and then is allowed by setting $auth to true for matching scenarios. See the ApiAuthorized snippet to see starting authorization using a header token, or by checking the logged in user.
 
-Authorization defaults to false and then is allowed by setting $auth to true. See the ApiAuthorized snippet to see starting authorization using a header token, or by checking the logged in user. If you have public APIs you need to allow them here by checking the service;
+If you need public APIs, endpoint specific authorization, or a different global authorzation check, you can override the Authorization. The following are checked in order and the first match is executed:
+1. Check for endpoint specific authorization. This looks for a snippet with the below name format:
+   * `/api/hello_world = ApiHelloWorldAuthorized`
 
-1. Example specific authorization
+1. Example specific authorization `/api/my_endpoint`
+   * Snippet Name: "ApiMyEndpointAuthorized"
    ```php
    <?php
-   // Get the service translated from /api/my_endpoint
-   if ($api->service === 'MyEndpoint' && $method === 'POST') {
-     // If they are not an App Admin
-     if ($modx->user->isMember('AppAdmins')) {
-       $auth = true;
-     }
-   }
-   
-   // Get the service translated from /api/public_thing
-   if ($api->service === 'PublicThing') {
+   // Only allow an App Admin
+   if ($modx->user->isMember('AppAdmins')) {
      $auth = true;
    }
-   
    ```
+
 ## Create a Snippet Endpoint
 
 1. Example (Accessed at): POST /api/validate_email/some.email@example.com
@@ -66,9 +61,9 @@ Authorization defaults to false and then is allowed by setting $auth to true. Se
 # Snippet Variables Available
 Each Snippet receives the below properties which can be used within your snippet to determine what process needs to occur and to set the appropriate response.
 
-* $api - Instance of: quickapi.class.php
+* $quickapi - Instance of: quickapi.class.php
 * $method - HTTP method
 * $body - Associative array converted from JSON body if present
 * $path - Simple array of path segments after the service/snippet name
-  * Example: The path "/hello_world/world/12" creates array ["world","12"]
+  * Example: The path `/hello_world/world/12` creates array `["world","12"]`
 * $params - Associative array of query parameters

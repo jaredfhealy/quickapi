@@ -11,8 +11,8 @@ if (!defined('MODX_CORE_PATH')) {
 return [
     'name' => 'QuickApi',
     'name_lower' => 'quickapi',
-    'version' => '1.0.0',
-    'release' => 'pl',
+    'version' => '1.0.1',
+    'release' => 'beta',
     
     // Install package to site right after build
     'install' => true,

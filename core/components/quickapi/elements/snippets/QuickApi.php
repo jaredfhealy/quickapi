@@ -5,7 +5,7 @@ $output = [
     "message" => "Unable to process request"
 ];
 
-$quickapi = $modx->getService('QuickApi', 'QuickApi', MODX_CORE_PATH . 'components/quickapi/model/', $scriptProperties);
+$quickapi = $modx->getService('QuickApi', 'QuickApi', MODX_CORE_PATH . 'components/quickapi/model/quickapi/', $scriptProperties);
 if ($quickapi) {
     // First prepare the properties
     $quickapi->prepare();

@@ -13,10 +13,15 @@ or validation.
 ** Note: This Extra is designed to work with friendly URLs
 
 1. Install the QuikApi Extra
-2. Update your rewrite rules for NGINX or Apache
-   - rewrite ^/quickapi/(.*)$ /quickapi?_quickapi=$1&$args;
-3. Review the ApiAuthorized snippet and update logic as needed to
-   handle permissions.
+2. Update your rewrite rules for NGINX or Apache based on desired
+   URI format. Replace "/api/" with "/myapi/" in the rewrite to match
+   your preference.
+   - rewrite ^/api/(.*)$ /quickapi?_quickapi=$1&$args;
+   - RewriteRule ^/api/(.*)$ /quickapi-process?_quickapi=$1
+3. Review the ApiAuthorized snippet. Create override MyApiAuthorized by
+   Duplicating the snippet and naming the duplicate: MyApiAuthorized
+   OR: You can create endpoint specific authorization by matching
+   /api/hello_world to ApiHelloWorldAuthorized as your Snippet name
 5. Create a Snippet for each of your endpoints.
    Example: POST /api/validate_email/some.email@example.com
    Snippet Name: ApiValidateEmail
@@ -36,7 +41,7 @@ or validation.
    
 Each Snippet receives the below properties:
 -------------------------
-$api - quickapi.class.php instance
+$quickapi - quickapi.class.php instance
 $method - HTTP method
 $body - Associative array converted from JSON body if present
 $path - Simple array of path segments after the service/snippet name

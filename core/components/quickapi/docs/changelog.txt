@@ -1,5 +1,14 @@
 Changelog for QuickApi.
 
-1.0.0-pl
+1.0.1-beta
+==============
+- Corrected content type assignment in resolver (https://github.com/jaredfhealy/quickapi/issues/1)
+- Changed Api authorization methodology slightly to allow overriding without modifying the ApiAuthorized snippet
+- Removed overriding the HTTP response code, leaving it entirely up to the developer for flexibility
+- Restructured the model directory to follow proper pattern with class file inside /model/quickapi/
+- Corrected descriptions on the included Snippets
+- Corrected minor indentation issues
+
+1.0.0-beta
 ==============
 - Initial release
