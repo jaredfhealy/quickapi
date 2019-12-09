@@ -1,7 +1,7 @@
 # QuickApi Summary
-This is a simple Extra for Modx Revolution that adds an API methodology. This plugin makes it quick and easy to create API endpoints for single page applications (SPA), or for client side dymaic behavior or validation.
+This is a simple Extra for Modx Revolution that adds an API methodology. This plugin makes it quick and easy to create API endpoints for single page applications (SPA), or for client side dynamic behavior or validation.
 
-This Extra is not intended to be a replacement for the MODX REST Api. The existing API documentation can be found here: https://docs.modx.com/revolution/2.x/developing-in-modx/advanced-development/developing-rest-servers. It is more robust, but also has more of a learning curve and is better for simple CRUD interactions with xPDO objects, both custom (myObject) and existing (modResource).
+This Extra is not intended to be a replacement for the MODX REST Api. The existing REST documentation can be found here: https://docs.modx.com/revolution/2.x/developing-in-modx/advanced-development/developing-rest-servers. It is more robust, but also has more of a learning curve and is better for simple CRUD interactions with xPDO objects, both custom (myObject) and existing (modResource).
 
 QuickApi keeps you in the platform and allows you to easily use snippets as your API endpoints with a single resource acting as your router for any path beginning with /api/ or your specified path.
 
