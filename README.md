@@ -46,7 +46,7 @@ If you need public APIs, endpoint specific authorization, or a different global 
    ```php
    <?php
    if ($method === 'POST' && $path[0] === 'some.email@example.com') {
-     $quickapi->setResponse(true, ['result' => 'validated]);
+     $quickapi->setResponse(true, ['result' => 'validated']);
    }
    ```
    * Response body returned:
