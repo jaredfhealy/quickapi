@@ -1,5 +1,13 @@
 Changelog for QuickApi.
 
+1.1.0-rc
+==============
+- Removed requirement for rewrite rules for Nginx or Apache!! (much simpler)
+- Added a plugin to handle rewriting the request and routing to the quickapi-process resource
+- Added a system property to allow changing of the API root path from "api/" to "myapi/" or any desired value
+- Switched log statemets to Debug level so they only log if the log level is set
+
+
 1.0.1-beta
 ==============
 - Corrected content type assignment in resolver (https://github.com/jaredfhealy/quickapi/issues/1)

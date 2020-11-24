@@ -11,8 +11,8 @@ if (!defined('MODX_CORE_PATH')) {
 return [
     'name' => 'QuickApi',
     'name_lower' => 'quickapi',
-    'version' => '1.0.0',
-    'release' => 'beta2',
+    'version' => '1.1.0',
+    'release' => 'rc',
     
     // Install package to site right after build
     'install' => true,
@@ -22,6 +22,7 @@ return [
         'resources' => true,
         'settings' => true,
         'snippets' => true,
+        'plugins' => true
     ],
     
     // Which elements should be static by default

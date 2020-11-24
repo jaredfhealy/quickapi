@@ -3,6 +3,11 @@ return [
     'x_api_key' => [
         'xtype' => 'textfield',
         'value' => 'someuniquetokenvaluethatnoonecanguess',
-        'area' => 'quickapi',
+        'area' => 'general',
+    ],
+    'path_root' => [
+        'xtype' => 'textfield',
+        'value' => 'api/',
+        'area' => 'general',
     ]
 ];

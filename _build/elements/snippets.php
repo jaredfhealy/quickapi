@@ -11,6 +11,6 @@ return [
     ],
     'ApiAuthorized' => [
         'file' => 'ApiAuthorized',
-        'description' => 'Authorize any API calls: $quickapi (QuickApi class instance), $authToken (X-API-Key if present), $hostname, $method (HTTP), $body (Array), $path (Array), $params (Array query parms)\nThis Snippet is called for every API call.'
+        'description' => 'Authorize any API calls: $quickapi (QuickApi class instance), $authToken (X-API-Key if present), $hostname, $method (HTTP), $body (Array), $path (Array), $params (Array query parms)'
     ]
 ];

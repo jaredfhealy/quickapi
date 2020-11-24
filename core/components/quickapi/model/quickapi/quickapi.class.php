@@ -71,7 +71,7 @@ class QuickApi
         
         // Merge the additional properties
         $this->response = array_merge_recursive($this->response, $props);
-        $this->log(json_encode($this->response));
+        $this->log(json_encode($this->response), 'debug');
         
         // Set the response code
         http_response_code($code);
@@ -156,7 +156,7 @@ class QuickApi
     {
         // Get the needed parameters
         $this->method = $_SERVER['REQUEST_METHOD'];
-        $this->pathArr = isset($_REQUEST['_quickapi']) ? explode("/", $_REQUEST['_quickapi']) : "";
+        $this->pathArr = isset($_REQUEST['_quickapi']) ? explode("/", $_REQUEST['_quickapi']) : [];
         $this->bodyArr = json_decode(file_get_contents('php://input'), true);
         $this->paramsArr = [];
         foreach ($_GET as $key => $value) {
@@ -198,9 +198,9 @@ class QuickApi
         // First check that a snippet exists with the current name
         if ($snippet = $this->modx->getObject('modSnippet', ['name' => 'Api'.$this->service])) {
             // Execute the snippet prefixed with 'Api'
-            $this->log("About to try the snippet: Api".$this->service);
+            $this->log("About to try the snippet: Api".$this->service, 'debug');
             try {
-                $this->log("Snippet: Api".$this->service);
+                $this->log("Snippet: Api".$this->service, 'debug');
                 $this->modx->runSnippet("Api".$this->service, [
                     "quickapi" => $this,
                     "method" => $this->method,
