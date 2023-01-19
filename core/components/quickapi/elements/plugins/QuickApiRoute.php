@@ -18,7 +18,7 @@ if ($event == 'OnMODXInit') {
     $pathRoot = $modx->getOption('quickapi.path_root', null, 'api/');
     
     // If the identifier starts with the path root
-    if (substr($identifier, 0, 4) === $pathRoot) {
+    if (substr($identifier, 0, strlen($pathRoot)) === $pathRoot) {
         // Override the request alias
         $_REQUEST[$rAlias] = "quickapi-process";
         $_REQUEST['_quickapi'] = str_replace('api/', '', $identifier);
