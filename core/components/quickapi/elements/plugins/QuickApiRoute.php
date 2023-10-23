@@ -16,11 +16,15 @@ if ($event == 'OnMODXInit') {
     
     // Get the path root property
     $pathRoot = $modx->getOption('quickapi.path_root', null, 'api/');
-    
+        
+    // Multi Context Mode    
+    preg_match('/^((en|de)\/)?/i', $identifier, $baseUrl);
+    $aliasPrefix = $baseUrl[0];
+
     // If the identifier starts with the path root
-    if (substr($identifier, 0, 4) === $pathRoot) {
+    if (substr($identifier, 0, strlen($aliasPrefix . $pathRoot)) == $aliasPrefix . $pathRoot) {
         // Override the request alias
-        $_REQUEST[$rAlias] = "quickapi-process";
-        $_REQUEST['_quickapi'] = str_replace('api/', '', $identifier);
+        $_REQUEST[$rAlias] = $aliasPrefix . 'quickapi-process';
+        $_REQUEST['_quickapi'] = str_replace($aliasPrefix . 'api/', '', $identifier);
     }
 }
